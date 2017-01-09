@@ -19,7 +19,7 @@ class ItemClassTest extends \PHPUnit\Framework\TestCase
         $this->item->addItem(['Id' => 8, 'Cost' => 8, 'Revenue' => 18, 'SellPrice' => 28]);
         $this->item->addItem(['Id' => 9, 'Cost' => 9, 'Revenue' => 19, 'SellPrice' => 29]);
         $this->item->addItem(['Id' => 10, 'Cost' => 10, 'Revenue' => 20, 'SellPrice' => 30]);
-        $this->item->addItem(['Id' => 11, 'Cost' => 12, 'Revenue' => 21, 'SellPrice' => 31]);
+        $this->item->addItem(['Id' => 11, 'Cost' => 11, 'Revenue' => 21, 'SellPrice' => 31]);
     }
 
     public function test_for_get_current_item()
@@ -32,5 +32,47 @@ class ItemClassTest extends \PHPUnit\Framework\TestCase
 
         /** assert */
         $this->assertEquals(11, sizeof($result));
+    }
+
+    public function test_for_get_cost_after_sum_group()
+    {
+        /** arrange */
+        $key = 'Cost';
+
+        /** act */
+        $result = $this->item->getItemSumGroup();
+        $actual = $result[$key];
+        $expect = [6, 15, 24, 21];
+
+        /** assert */
+        $this->assertArraySubset($expect, $actual);
+    }
+
+    public function test_for_get_Revenue_after_sum_group()
+    {
+        /** arrange */
+        $key = 'Revenue';
+
+        /** act */
+        $result = $this->item->getItemSumGroup();
+        $actual = $result[$key];
+        $expect = [36, 45, 54, 41];
+
+        /** assert */
+        $this->assertArraySubset($expect, $actual);
+    }
+
+    public function test_for_get_SellPrice_after_sum_group()
+    {
+        /** arrange */
+        $key = 'SellPrice';
+
+        /** act */
+        $result = $this->item->getItemSumGroup();
+        $actual = $result[$key];
+        $expect = [66, 75, 84, 61];
+
+        /** assert */
+        $this->assertArraySubset($expect, $actual);
     }
 }

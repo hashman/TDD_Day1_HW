@@ -33,4 +33,36 @@ class Item
     {
         return $this->item;
     }
+
+    public function getItemSumGroup()
+    {
+        $result = [];
+        foreach (array_keys($this->item[0]) as $item) {
+            $result[$item] = [];
+        }
+
+        $i = 0;
+        $index = 0;
+        foreach ($this->item as $item) {
+            if ($i == 0) {
+                foreach (array_keys($result) as $key) {
+                    $result[$key][$index] = 0;
+                }
+            }
+
+            foreach (array_keys($result) as $key) {
+                $result[$key][$index] += (int)$item[$key];
+            }
+
+            if ($i == 2) {
+                $i = 0;
+                $index++;
+                continue;
+            }
+
+            $i++;
+        }
+
+        return $result;
+    }
 }
