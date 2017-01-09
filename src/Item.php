@@ -51,6 +51,9 @@ class Item
             }
 
             foreach (array_keys($result) as $key) {
+                if (!is_numeric($item[$key])) {
+                    throw new \Exception('data must be integer');
+                }
                 $result[$key][$index] += (int)$item[$key];
             }
 

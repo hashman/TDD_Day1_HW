@@ -113,6 +113,23 @@ class ItemClassTest extends \PHPUnit\Framework\TestCase
         $this->assertArraySubset($expect, $actual);
     }
 
+    /**
+     * @expectedException Exception
+     */
+
+    public function test_for_add_wrong_type_of_mock_data()
+    {
+        /** arrange */
+        $this->addWrongTypeMockData();
+
+        /** act */
+        $actual = $this->item->getItemSumGroup();
+        $expect = 'Data must be integer';
+
+        /** assert */
+        $this->expectExceptionMessage($expect);
+    }
+
     private function addIdCostRevenueSellPriceMockData()
     {
         $this->item->addItem(['Id' => 1, 'Cost' => 1, 'Revenue' => 11, 'SellPrice' => 21]);
@@ -156,5 +173,13 @@ class ItemClassTest extends \PHPUnit\Framework\TestCase
         $this->item->addItem(['BookId' => 9, 'Level' => 3, 'Score' => 19]);
         $this->item->addItem(['BookId' => 10, 'Level' => 4, 'Score' => 20]);
         $this->item->addItem(['BookId' => 11, 'Level' => 4, 'Score' => 21]);
+    }
+
+    private function addWrongTypeMockData()
+    {
+        $this->item->addItem(['BookId' => 1, 'Level' => 'test', 'Score' => 11]);
+        $this->item->addItem(['BookId' => 2, 'Level' => 1, 'Score' => 'wrong']);
+        $this->item->addItem(['BookId' => 3, 'Level' => 1, 'Score' => 13]);
+        $this->item->addItem(['BookId' => 4, 'Level' => 2, 'Score' => 14]);
     }
 }
