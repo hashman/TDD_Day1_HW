@@ -27,10 +27,11 @@ class ItemClassTest extends \PHPUnit\Framework\TestCase
     {
         /** arrange */
         $this->addIdCostRevenueSellPriceMockData();
+        $group_size = 3;
         $key = 'Cost';
 
         /** act */
-        $result = $this->item->getItemSumGroup();
+        $result = $this->item->getItemSumGroup($group_size);
         $actual = $result[$key];
         $expect = [6, 15, 24, 21];
 
@@ -38,16 +39,17 @@ class ItemClassTest extends \PHPUnit\Framework\TestCase
         $this->assertArraySubset($expect, $actual);
     }
 
-    public function test_for_get_Revenue_after_sum_group()
+    public function test_for_get_Revenue_with_group_size_equals_to_four()
     {
         /** arrange */
         $this->addIdCostRevenueSellPriceMockData();
+        $group_size = 4;
         $key = 'Revenue';
 
         /** act */
-        $result = $this->item->getItemSumGroup();
+        $result = $this->item->getItemSumGroup($group_size);
         $actual = $result[$key];
-        $expect = [36, 45, 54, 41];
+        $expect = [50, 66, 60];
 
         /** assert */
         $this->assertArraySubset($expect, $actual);
@@ -57,10 +59,11 @@ class ItemClassTest extends \PHPUnit\Framework\TestCase
     {
         /** arrange */
         $this->addIdCostRevenueSellPriceMockData();
+        $group_size = 3;
         $key = 'SellPrice';
 
         /** act */
-        $result = $this->item->getItemSumGroup();
+        $result = $this->item->getItemSumGroup($group_size);
         $actual = $result[$key];
         $expect = [66, 75, 84, 61];
 
@@ -72,10 +75,11 @@ class ItemClassTest extends \PHPUnit\Framework\TestCase
     {
         /** arrange */
         $this->addIdCostRevenueSellPriceNumberMockData();
+        $group_size = 3;
         $key = 'Number';
 
         /** act */
-        $result = $this->item->getItemSumGroup();
+        $result = $this->item->getItemSumGroup($group_size);
         $actual = $result[$key];
         $expect = [12, 30, 48, 42];
 
@@ -87,10 +91,11 @@ class ItemClassTest extends \PHPUnit\Framework\TestCase
     {
         /** arrange */
         $this->addBookLevelScoreMockData();
+        $group_size = 3;
         $key = 'Score';
 
         /** act */
-        $result = $this->item->getItemSumGroup();
+        $result = $this->item->getItemSumGroup($group_size);
         $actual = $result[$key];
         $expect = [36, 45, 54, 41];
 
@@ -102,10 +107,11 @@ class ItemClassTest extends \PHPUnit\Framework\TestCase
     {
         /** arrange */
         $this->addBookLevelScoreMockData();
+        $group_size = 3;
         $key = 'Level';
 
         /** act */
-        $result = $this->item->getItemSumGroup();
+        $result = $this->item->getItemSumGroup($group_size);
         $actual = $result[$key];
         $expect = [3, 6, 9, 8];
 
@@ -121,9 +127,10 @@ class ItemClassTest extends \PHPUnit\Framework\TestCase
     {
         /** arrange */
         $this->addWrongTypeMockData();
+        $group_size = 3;
 
         /** act */
-        $actual = $this->item->getItemSumGroup();
+        $actual = $this->item->getItemSumGroup($group_size);
         $expect = 'Data must be integer';
 
         /** assert */

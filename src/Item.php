@@ -34,7 +34,12 @@ class Item
         return $this->item;
     }
 
-    public function getItemSumGroup()
+    /**
+     * @param int $size_of_group
+     * @return array
+     * @throws \Exception
+     */
+    public function getItemSumGroup(int $size_of_group = 3) : array
     {
         $result = [];
         foreach (array_keys($this->item[0]) as $item) {
@@ -57,7 +62,7 @@ class Item
                 $result[$key][$index] += (int)$item[$key];
             }
 
-            if ($i == 2) {
+            if ($i == $size_of_group - 1) {
                 $i = 0;
                 $index++;
                 continue;
