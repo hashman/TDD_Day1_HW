@@ -31,8 +31,7 @@ class ItemClassTest extends \PHPUnit\Framework\TestCase
         $key = 'Cost';
 
         /** act */
-        $result = $this->item->getItemSumGroup($group_size);
-        $actual = $result[$key];
+        $actual = $this->item->getItemSumGroup($group_size, $key);
         $expect = [6, 15, 24, 21];
 
         /** assert */
@@ -47,8 +46,7 @@ class ItemClassTest extends \PHPUnit\Framework\TestCase
         $key = 'Revenue';
 
         /** act */
-        $result = $this->item->getItemSumGroup($group_size);
-        $actual = $result[$key];
+        $actual = $this->item->getItemSumGroup($group_size, $key);
         $expect = [50, 66, 60];
 
         /** assert */
@@ -63,8 +61,7 @@ class ItemClassTest extends \PHPUnit\Framework\TestCase
         $key = 'SellPrice';
 
         /** act */
-        $result = $this->item->getItemSumGroup($group_size);
-        $actual = $result[$key];
+        $actual = $this->item->getItemSumGroup($group_size, $key);
         $expect = [66, 75, 84, 61];
 
         /** assert */
@@ -79,8 +76,7 @@ class ItemClassTest extends \PHPUnit\Framework\TestCase
         $key = 'Number';
 
         /** act */
-        $result = $this->item->getItemSumGroup($group_size);
-        $actual = $result[$key];
+        $actual = $this->item->getItemSumGroup($group_size, $key);
         $expect = [12, 30, 48, 42];
 
         /** assert */
@@ -95,8 +91,7 @@ class ItemClassTest extends \PHPUnit\Framework\TestCase
         $key = 'Score';
 
         /** act */
-        $result = $this->item->getItemSumGroup($group_size);
-        $actual = $result[$key];
+        $actual = $this->item->getItemSumGroup($group_size, $key);
         $expect = [36, 45, 54, 41];
 
         /** assert */
@@ -111,8 +106,7 @@ class ItemClassTest extends \PHPUnit\Framework\TestCase
         $key = 'Level';
 
         /** act */
-        $result = $this->item->getItemSumGroup($group_size);
-        $actual = $result[$key];
+        $actual = $this->item->getItemSumGroup($group_size, $key);
         $expect = [3, 6, 9, 8];
 
         /** assert */
@@ -128,9 +122,10 @@ class ItemClassTest extends \PHPUnit\Framework\TestCase
         /** arrange */
         $this->addWrongTypeMockData();
         $group_size = 3;
+        $key = 'Score';
 
         /** act */
-        $actual = $this->item->getItemSumGroup($group_size);
+        $actual = $this->item->getItemSumGroup($group_size, $key);
         $expect = 'Data must be integer';
 
         /** assert */
